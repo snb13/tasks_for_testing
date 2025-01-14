@@ -18,7 +18,6 @@ public class Task4 {
                 .mapToInt(num -> num)
                 .sum());
         double t = (double) tempNum / arrList.size();
-        System.out.println(t);
 
         int counter = 0;
 

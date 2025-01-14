@@ -1,40 +1,48 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Task4 {
 
     public static void main(String[] args) throws IOException {
         File coordsFile = new File(args[0]);
-        //BufferedReader reader = new BufferedReader(new FileReader("task4/src/dataSource.txt"));
-        BufferedReader reader = new BufferedReader(new FileReader(coordsFile));
-
+        Scanner scanner = new Scanner(new FileInputStream(coordsFile));
         ArrayList<Integer> arrList = new ArrayList<>();
-        try {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                arrList.add(Integer.parseInt(line));
-            }
-        } finally {
-            reader.close();
+
+
+        while (scanner.hasNextInt()) {
+            arrList.add(scanner.nextInt());
         }
-        int counter = 0;
-        int resultNum = (arrList.stream()
+
+        int tempNum = (arrList.stream()
                 .mapToInt(num -> num)
-                .sum())/arrList.size();
+                .sum());
+        double t = (double) tempNum / arrList.size();
+        System.out.println(t);
+
+        int counter = 0;
+
+        int resultNum;
+        if ((t % (int) t) >= 0.5) {
+                resultNum = (int) Math.ceil(t);
+        }
+        else if (t >= 0.5 && t < 1.0) {
+                resultNum = 1;
+        } else  {
+            resultNum = (int) Math.floor(t);
+        }
+
 
 
         for (int m = 0; m < arrList.size(); m++) {
             while (arrList.get(m) != resultNum) {
-                if(arrList.get(m) < resultNum) {
+                if (arrList.get(m) < resultNum) {
                     arrList.set(m, arrList.get(m) + 1);
-                    counter++;
-                } else {
-                    arrList.set(m, arrList.get(m) - 1);
-                    counter++;
                 }
+                if (arrList.get(m) > resultNum) {
+                    arrList.set(m, arrList.get(m) - 1);
+                }
+                counter++;
             }
         }
         System.out.println(counter);

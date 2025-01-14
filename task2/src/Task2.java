@@ -29,26 +29,14 @@ public class Task2 {
 
             double s = ((x1_coord - x) * (x1_coord - x)) + ((y1_coord - y) * (y1_coord - x)) - (rad * rad);
             if (s < 0) {
-                
                 result = 1;
             }
             else if (s > 0) {
-
                 result = 2;
             }
             else {
-
                 result = 0;
             }
-
-            /*if (x == x1_coord && Math.abs(y1_coord - y) == rad || y == y1_coord && Math.abs(x1_coord - x) == rad) {
-                result = 0;
-            } else if (x1_coord >= Math.abs(x + rad) || y1_coord >= Math.abs(y + rad)){
-                result = 2;
-            } else {
-                result = 1;
-            }*/
-
             System.out.println(result);
         }
 

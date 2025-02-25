@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Task4 {
@@ -19,16 +20,15 @@ public class Task4 {
             arrList.add(scanner.nextInt());
         }
 
-        double sum = arrList.stream().mapToInt(Integer::intValue).sum();
-        double average = sum / arrList.size();
+        Collections.sort(arrList);
 
-        int resultNum = (int) Math.round(average);
+        int med = arrList.get(arrList.size() / 2);
 
         int counter = 0;
-        for (int m = 0; m < arrList.size(); m++) {
-            counter += Math.abs(arrList.get(m) - resultNum);
-        }
+        for (int num : arrList) {
+            counter += Math.abs(num - med);
 
+        }
         System.out.println(counter);
     }
 }
